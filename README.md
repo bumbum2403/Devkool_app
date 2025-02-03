@@ -66,6 +66,79 @@ Devkool uses encryption to secure stored API keys and endpoints.  It's crucial t
 ### Adding an API
 
 ```bash
+
 devkool add <api_key> <endpoint>
+
+```
+
+### Listing a stored API
+
+```bash
+
+devkool list
+
+```
+Displays a list of stored API keys and endpoints (decrypted) along with their unique IDs.  The API ID is crucial for other commands.
+
+### Updating an API
+
+```bash
+
+devkool update <api_id> [<new_api_key>] [<new_endpoint>]
+
+```
+
+* <api_id>: The unique ID of the API you want to update (obtained from devkool list).
+* <new_api_key>: The new API key (optional).
+* <new_endpoint>: The new base URL (optional).
+* You can update either the API key, the endpoint, or both.
+
+### Deleting an API
+
+```bash
+
+devkool delete <api_id>
+
+```
+* <api_id>: The unique ID of the API you want to delete.
+
+
+### Tracking Untracked APIs
+
+```bash
+
+devkool track
+
+```
+Scans the current project directory for Python files and identifies API endpoints that are being used in the code but are not yet tracked by Devkool.  It reports the untracked APIs and suggests using devkool add to track them.
+
+### Testing an API
+
+```bash
+
+devkool test <api_id> <api_spec_path>
+
+```
+* <api_id>: The unique ID of the API you want to test.
+* <api_spec_path>: The path to the API specification file (OpenAPI/Swagger JSON format).
+Generates test case descriptions from the API specification and executes the test cases.  It prints the test case descriptions and the status codes of the API responses.  It uses a zero-shot classification model to categorize test cases.  It also implements rate limiting to avoid exceeding API usage limits using the python time module for testing purposes. 
+
+# Contributing:
+Contributions are welcome!  Please open an issue or submit a pull request on GitHub. I would love to learn more about how we can optimize this further, here are a few functionalities I have in mind:-
+1. Feature to import all the stored API endpoints as a collection in Postman directly.
+2. SOME GEN-AI BASED USE CASES-- 
+    * Fine-tune a pre-trained model that can categorise the stored API-endpoints by adding    labels to them .
+    * AI- based test case generation + handling edge cases
+    * Threat detection using a fine-tuned model that can analyse risky endpoints, 
+      detecting sensitive data exposure , run a security audit on stored APIs.
+    
+
+
+
+
+
+
+
+
 
 
